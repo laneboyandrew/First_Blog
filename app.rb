@@ -9,5 +9,5 @@ end
 
 
 get '/new' do
-  erb "Hello World"
+  erb :new
 end
