@@ -18,7 +18,10 @@ configure do
   @db.execute 'create table if not exists "Posts" (id integer primary key autoincrement,
                                       created_date date,
                                       content text)'
-
+  @db.execute 'create table if not exists "Comments" (id integer primary key autoincrement,
+                                      created_date date,
+                                      content text
+                                      post_id integer)'
 end
 
 
@@ -58,5 +61,15 @@ get '/details/:post_id' do
   @row = results[0]
 
   erb :details
+
+end
+
+
+post '/details/:post_id' do
+
+  post_id = params[:post_id]
+  content = params[:content]
+
+  erb "You typed comment #{content} for post #{post_id}"
 
 end

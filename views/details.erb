@@ -13,12 +13,15 @@
 
   </p>
   <hr />
-
-
-
-
-
-
-
-
 </p>
+
+<h4>Comments: </h4>
+
+<form action="/details/<%= @row['id'] %>" method="POST" role="form">
+<textarea name="content" class="form-control" rows="3" placeholder="Type comment text here">
+
+  </textarea>
+</br>
+<button type="submit" class="btn btn-success">Add comment</button>
+</p>
+</form>
