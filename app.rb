@@ -66,6 +66,8 @@ end
 get '/details/:post_id' do
   post_id = params[:post_id]
 
+
+
   results = @db.execute 'select * from Posts where id = ?', [post_id]
   @row = results[0]
 
@@ -80,6 +82,10 @@ post '/details/:post_id' do
 
   post_id = params[:post_id]
   content = params[:content]
+  if content.strip.empty?
+    @error = 'Type comment'
+    redirect to ('/details/' + post_id)
+  end
 
   @db.execute 'insert into Comments (content, created_date, post_id) values (?, datetime(),?)', [content, post_id]
 
