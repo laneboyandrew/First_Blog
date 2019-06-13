@@ -17,11 +17,13 @@ configure do
   init_db
   @db.execute 'create table if not exists "Posts" (id integer primary key autoincrement,
                                       created_date date,
-                                      content text)'
+                                      content text
+                                      personname text)'
   @db.execute 'create table if not exists "Comments" (id integer primary key autoincrement,
                                       created_date date,
                                       content text
-                                      post_id integer)'
+                                      post_id integer
+                                      personname text)'
 end
 
 
@@ -40,14 +42,21 @@ end
 
 post '/new' do
 
+
+personname = params[:personname]
 content = params[:content]
+
+if personname.strip.empty?
+  @error = 'Type your name'
+  return erb :new
+end
 
 if content.strip.empty?
   @error = 'Type post text'
   return erb :new
 end
 
-@db.execute 'insert into Posts (content, created_date) values (?, datetime())', [content]
+@db.execute 'insert into Posts (personname, content, created_date) values (?, ?, datetime())', [personname, content]
 
   redirect to '/'
 

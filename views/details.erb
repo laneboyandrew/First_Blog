@@ -1,32 +1,19 @@
-<h4> Post details: </h4>
-
-
+<h4> Post: </h4>
 <p>
-
-
   <p>
     <%= @row['content'] %>
-
     <br />
-
-    Added at <%= @row['created_date'] %>
-
+    <span style="font-size: 75%; color: #999"> Added at <%= @row['created_date'] %> </span>
   </p>
-  <hr />
+    <hr />
 </p>
 
 <h4>Comments: </h4>
-
-<br>
-
 <% @comments.each do |comment| %>
   <p>
     <%= comment['content'] %>
-
     <br>
-
     <span style = "font-size: 75%; color: #999"> Added at <%= comment['created_date'] %> </span>
-
   </p>
   <hr>
 <% end %>
